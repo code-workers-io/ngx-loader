@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngx-loader",
+  "sourceRoot": "libs/ngx-loader/src",
+  "prefix": "ngx-loader",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngx-loader"],
+      "options": {
+        "project": "libs/ngx-loader/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-loader/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-loader/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngx-loader"],
+      "options": {
+        "jestConfig": "libs/ngx-loader/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-loader/src/**/*.ts",
+          "libs/ngx-loader/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
