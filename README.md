@@ -16,7 +16,7 @@ npm i @code-workers.io/ngx-loader
 Import the NgxLoaderModule in your app.module.ts
 
 ```typescript
-import { NgxLoaderModule } from '@mikelgo/ngx-loader';
+import { NgxLoaderModule } from '@code-workers.io/ngx-loader';
 
 @NgModule({
   imports: [
