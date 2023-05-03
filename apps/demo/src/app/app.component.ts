@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject, VERSION} from '@angular/core';
+import {delay, map, Observable, share, startWith} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'ngx-loader-root',
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'demo';
+  name = 'Angular ' + VERSION.major;
+
+  constructor(private http: HttpClient) {
+  }
+
+  loading$: Observable<boolean> = this.fetch().pipe(
+    startWith(true),
+    map(() => false)
+  );
+
+  data = this.fetch();
+
+  fetch() {
+    return this.http
+      .get('https://jsonplaceholder.typicode.com/posts/1')
+      .pipe(delay(2000), share());
+  }
 }

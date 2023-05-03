@@ -1,1 +1,8 @@
-<ngx-loader-nx-welcome></ngx-loader-nx-welcome>
+<ngx-loader [show]="!(data | async)" [loaderTemplate]="myloader">
+  <ng-template>
+    <div class="content"> <div *ngIf="data | async as d">{{d | json}} </div></div>
+  </ng-template>
+</ngx-loader>
+
+<ng-template #myloader> ..loading.. </ng-template>
+
