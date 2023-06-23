@@ -10,5 +10,10 @@
   },
   "license": "MIT",
   "description": "A simple loader component for Angular",
-  "keywords": ["angular loader", "angular", "loader", "spinner"]
+  "keywords": [
+    "angular loader",
+    "angular",
+    "loader",
+    "spinner"
+  ]
 }
