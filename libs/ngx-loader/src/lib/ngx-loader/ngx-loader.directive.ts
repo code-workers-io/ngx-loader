@@ -15,7 +15,7 @@ import {
   NGX_LOADER_CONFIG_TOKEN,
   NgxLoaderConfig,
 } from '../ngx-loader-config.token';
-import {NgxLoaderWrapperComponent} from "./ngx-loader-wrapper.component";
+import {NgxLoaderWrapperComponent, NgxLoaderWrapperComponentModule} from "./ngx-loader-wrapper.component";
 
 interface NgxLoaderDirectiveContext<T> {
   $implicit: T;
@@ -70,7 +70,7 @@ export class NgxLoaderDirective<T> implements OnInit, OnDestroy {
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, NgxLoaderWrapperComponentModule],
   declarations: [NgxLoaderDirective],
   exports: [NgxLoaderDirective],
 })
