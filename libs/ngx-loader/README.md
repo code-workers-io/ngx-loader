@@ -12,7 +12,45 @@ npm i @code-workers.io/ngx-loader
 ```
 
 ### Usage
+#### Structural Directive Usage
+Import the NgxLoaderModule in your app.module.ts
 
+```typescript
+import { NgxLoaderDirectiveModule } from '@mikelgo/ngx-loader';
+
+@NgModule({
+  imports: [
+    NgxLoaderDirectiveModule
+  ]
+})
+export class AppModule { }
+```
+
+```typescript
+
+<div *ngxLoader="data; let result; loaderTemplate: myloader"> Some content I want to show {{result}} </div>
+
+
+<ng-template #myloader> <my-spinner> </my-spinner> </ng-template
+```
+Optionally you can pass a config object to the module to customize a global loader component.
+
+```typescript
+import { NgxLoaderDirectiveModule } from '@mikelgo/ngx-loader';
+
+@NgModule({
+  imports: [
+    NgxLoaderDirectiveModule.forRoot({
+      loaderComponent: MyCustomLoaderComponent,
+      backdropClass: 'my-custom-backdrop-class'
+    })
+  ]
+})
+export class AppModule { }
+```
+
+
+#### Component Usage
 Import the NgxLoaderModule in your app.module.ts
 
 ```typescript
@@ -36,7 +74,9 @@ export class AppModule { }
 <ng-template #myloader> <my-spinner> </my-spinner> </ng-template
 ```
 
-Optionally you can pass a config object to the module to customize a global loader component.
+Optionally you can pass a config object to the module to customize a global loader component. Then you can omit
+the `loaderTemplate` input in the previous example.
+
 
 ```typescript
 import { NgxLoaderModule } from '@mikelgo/ngx-loader';
