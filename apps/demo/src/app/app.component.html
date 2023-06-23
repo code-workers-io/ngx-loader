@@ -1,8 +1,12 @@
 <ngx-loader [show]="!(data | async)" [loaderTemplate]="myloader">
   <ng-template>
-    <div class="content"> <div *ngIf="data | async as d">{{d | json}} </div></div>
+    <div class="content">
+      <div *ngIf="data | async as d">{{ d | json }}</div>
+    </div>
   </ng-template>
 </ngx-loader>
 
+<div class="content" *ngxLoader="data; let result; loaderTemplate: myloader">
+  <div >{{ result | json }}</div>
+</div>
 <ng-template #myloader> ..loading.. </ng-template>
-

@@ -1,5 +1,5 @@
 import {Component, inject, VERSION} from '@angular/core';
-import {delay, map, Observable, share, startWith} from 'rxjs';
+import {delay, map, Observable, of, share, startWith} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -23,6 +23,6 @@ export class AppComponent {
   fetch() {
     return this.http
       .get('https://jsonplaceholder.typicode.com/posts/1')
-      .pipe(delay(2000), share());
+      .pipe(delay(4000), share());
   }
 }
