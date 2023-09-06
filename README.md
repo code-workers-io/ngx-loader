@@ -63,6 +63,14 @@ Finally you will use it like this:
 
 ```
 
+### Directive usage
+Alternativly instead of using the `ngx-loader` component you can use a structural directive:
+```
+<div *ngxLoader="data; let result; loaderTemplate: myloader">
+  <div >{{ result | json }}</div>
+</div>
+```
+
 ### API
 `NgxLoaderComponent`
 * `show` [boolean]: condition to hide or show the component
