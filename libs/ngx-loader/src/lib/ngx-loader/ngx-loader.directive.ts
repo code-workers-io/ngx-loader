@@ -57,78 +57,78 @@ export class NgxLoaderDirective<T> implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sub.add(
-      combineLatest([
-        this.ngxLoader.pipe(startWith(null)),
-        deriveLoadingState(this.ngxLoader, 500, 8000),
-      ]).subscribe(([data, loading]) => {
-        if (loading) {
-          this.vcr.clear();
-          this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
-          this.compRef.instance.content = this.templateRef;
-          this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
-          this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
-          this.compRef.changeDetectorRef.detectChanges();
-        }
-        if (!loading && data) {
-          this.vcr.clear();
-          this.embeddedViewRef = this.vcr.createEmbeddedView(this.templateRef, {
-            $implicit: data,
-          });
-        }
-      })
-    );
-    // if (!this.nonFlickerLoaderConfig) {
-    //   this.sub.add(
-    //     this.ngxLoader.pipe(startWith(null)).subscribe((data) => {
+    // this.sub.add(
+    //   combineLatest([
+    //     this.ngxLoader.pipe(startWith(null)),
+    //     deriveLoadingState(this.ngxLoader, 500, 8000),
+    //   ]).subscribe(([data, loading]) => {
+    //     if (loading) {
     //       this.vcr.clear();
-    //       if (data) {
-    //         this.embeddedViewRef = this.vcr.createEmbeddedView(
-    //           this.templateRef,
-    //           {
-    //             $implicit: data,
-    //           }
-    //         );
-    //       } else {
-    //         this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
-    //         this.compRef.instance.content = this.templateRef;
-    //         this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
-    //         this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
-    //         this.compRef.changeDetectorRef.detectChanges();
-    //       }
-    //     })
-    //   );
-    // }
-    // if (this.nonFlickerLoaderConfig) {
-    //   this.sub.add(
-    //     combineLatest([
-    //       this.ngxLoader.pipe(startWith(null)),
-    //       deriveLoadingState(
-    //         this.ngxLoader,
-    //         this.nonFlickerLoaderConfig.suspenseThreshold,
-    //         this.nonFlickerLoaderConfig.suspenseTime
-    //       ),
-    //     ]).subscribe(([data, loading]) => {
-    //       if (loading) {
-    //         this.vcr.clear();
-    //         this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
-    //         this.compRef.instance.content = this.templateRef;
-    //         this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
-    //         this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
-    //         this.compRef.changeDetectorRef.detectChanges();
-    //       }
-    //       if (!loading && data) {
-    //         this.vcr.clear();
-    //         this.embeddedViewRef = this.vcr.createEmbeddedView(
-    //           this.templateRef,
-    //           {
-    //             $implicit: data,
-    //           }
-    //         );
-    //       }
-    //     })
-    //   );
-    // }
+    //       this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
+    //       this.compRef.instance.content = this.templateRef;
+    //       this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
+    //       this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
+    //       this.compRef.changeDetectorRef.detectChanges();
+    //     }
+    //     if (!loading && data) {
+    //       this.vcr.clear();
+    //       this.embeddedViewRef = this.vcr.createEmbeddedView(this.templateRef, {
+    //         $implicit: data,
+    //       });
+    //     }
+    //   })
+    // );
+    if (!this.nonFlickerLoaderConfig) {
+      this.sub.add(
+        this.ngxLoader.pipe(startWith(null)).subscribe((data) => {
+          this.vcr.clear();
+          if (data) {
+            this.embeddedViewRef = this.vcr.createEmbeddedView(
+              this.templateRef,
+              {
+                $implicit: data,
+              }
+            );
+          } else {
+            this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
+            this.compRef.instance.content = this.templateRef;
+            this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
+            this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
+            this.compRef.changeDetectorRef.detectChanges();
+          }
+        })
+      );
+    }
+    if (this.nonFlickerLoaderConfig) {
+      this.sub.add(
+        combineLatest([
+          this.ngxLoader.pipe(startWith(null)),
+          deriveLoadingState(
+            this.ngxLoader,
+            this.nonFlickerLoaderConfig.suspenseThreshold,
+            this.nonFlickerLoaderConfig.suspenseTime
+          ),
+        ]).subscribe(([data, loading]) => {
+          if (loading) {
+            this.vcr.clear();
+            this.compRef = this.vcr.createComponent(NgxLoaderWrapperComponent);
+            this.compRef.instance.content = this.templateRef;
+            this.compRef.instance.loaderTemplate = this.ngxLoaderLoaderTemplate;
+            this.compRef.instance.backdropClass = this.ngxLoaderBackdropClass;
+            this.compRef.changeDetectorRef.detectChanges();
+          }
+          if (!loading && data) {
+            this.vcr.clear();
+            this.embeddedViewRef = this.vcr.createEmbeddedView(
+              this.templateRef,
+              {
+                $implicit: data,
+              }
+            );
+          }
+        })
+      );
+    }
   }
   ngOnDestroy() {
     this.compRef.destroy();
