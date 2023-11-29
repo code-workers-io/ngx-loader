@@ -7,6 +7,6 @@
 </ngx-loader>
 
 <div class="content" *ngxLoader="data; let result; loaderTemplate: myloader">
-  <div >{{ result | json }}</div>
+  <div >Data {{ result | json }}</div>
 </div>
 <ng-template #myloader> ..loading.. </ng-template>
