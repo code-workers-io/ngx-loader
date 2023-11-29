@@ -15,7 +15,7 @@ export function withNonFlickerLoader(cfg?: {
   return makeFeature('NonFlickerLoader', [
     {
       provide: NON_FLICKER_LOADER_FEATURE,
-      useValue: cfg ?? { suspenseThreshold: 5000, suspenseTime: 10000 },
+      useValue: cfg ?? { suspenseThreshold: 500, suspenseTime: 500 },
     },
   ]);
 }
